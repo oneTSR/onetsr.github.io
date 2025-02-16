@@ -1,0 +1,103 @@
+<!DOCTYPE HTML>
+<!--
+	Read Only by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Xuancheng_Mao 的小站 -QWQ-</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Header -->
+			<section id="header">
+				<header>
+					<span class="image avatar"><img src="images/avatar.png" alt="" /></span>
+					<h1 id="logo"><a href="#">Xuancheng_Mao</a></h1>
+					<p>独坐孤舟<br />
+				</header>
+				<nav id="nav">
+					<ul>
+						<li><a href="https://onetsr.github.io/">首页</a></li>
+						<li><a href="https://onetsr.github.io/" class="active">S-P7072</a></li>
+					</ul>
+				</nav>
+				<footer>
+					<ul class="icons">
+						<li><a href="https://www.luogu.com.cn/user/995474"><span class="label">Luogu</span></a></li>
+					</ul>
+				</footer>
+			</section>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Article -->
+							<section id="Article">
+								<div class="container">
+									<h3>题解：P7072 [CSP-J2020] 直播获奖</h3>
+									<p>2025.2.16 by Xuancheng_Mao</p>
+									<div class="features">
+										<p>桶排序，从高到低数即可。</p>
+<p>代码：</p>
+<pre class="language-cpp"><code class="language-cpp code-highlight"><span class="code-line line-number" line="1"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span><span class="token string">&lt;bits/stdc++.h&gt;</span></span>
+</span><span class="code-line line-number" line="2"><span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+</span><span class="code-line line-number" line="3"><span class="token keyword">int</span> n<span class="token punctuation">,</span>w<span class="token punctuation">,</span>cnt<span class="token punctuation">[</span><span class="token number">605</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+</span><span class="code-line line-number" line="4">
+</span><span class="code-line line-number" line="5"><span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="6">    ios<span class="token double-colon punctuation">::</span><span class="token function">sync_with_stdio</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</span><span class="code-line line-number" line="7">    cin<span class="token operator">&gt;&gt;</span>n<span class="token operator">&gt;&gt;</span>w<span class="token punctuation">;</span>
+</span><span class="code-line line-number" line="8">    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="9">        <span class="token keyword">int</span> scr<span class="token punctuation">;</span>
+</span><span class="code-line line-number" line="10">        cin<span class="token operator">&gt;&gt;</span>scr<span class="token punctuation">;</span>
+</span><span class="code-line line-number" line="11">        cnt<span class="token punctuation">[</span>scr<span class="token punctuation">]</span><span class="token operator">++</span><span class="token punctuation">;</span>
+</span><span class="code-line line-number" line="12">        <span class="token keyword">int</span> num<span class="token operator">=</span><span class="token function">max</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span>i<span class="token operator">*</span>w<span class="token operator">/</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">,</span>tmp<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+</span><span class="code-line line-number" line="13">        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> j<span class="token operator">=</span><span class="token number">600</span><span class="token punctuation">;</span>j<span class="token operator">&gt;=</span><span class="token number">0</span><span class="token punctuation">;</span>j<span class="token operator">--</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="14">            tmp<span class="token operator">+=</span>cnt<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">;</span>
+</span><span class="code-line line-number" line="15">            <span class="token keyword">if</span><span class="token punctuation">(</span>tmp<span class="token operator">&gt;=</span>num<span class="token punctuation">)</span><span class="token punctuation">{</span>
+</span><span class="code-line line-number" line="16">                cout<span class="token operator">&lt;&lt;</span>j<span class="token operator">&lt;&lt;</span><span class="token char">' '</span><span class="token punctuation">;</span>
+</span><span class="code-line line-number" line="17">                <span class="token keyword">break</span><span class="token punctuation">;</span>
+</span><span class="code-line line-number" line="18">            <span class="token punctuation">}</span>
+</span><span class="code-line line-number" line="19">        <span class="token punctuation">}</span>
+</span><span class="code-line line-number" line="20">    <span class="token punctuation">}</span>
+</span><span class="code-line line-number" line="21">    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+</span><span class="code-line line-number" line="22"><span class="token punctuation">}</span>
+</span></code></pre>
+<p>坑点：</p>
+<p>1.<code>for(int j=600;j&gt;=0;j--)</code> 是从高到低排，容易粗心写错。</p>
+<p>2.要记得 <code>break</code>。</p>
+									</div>
+								</div>
+							</section>
+					</div>
+
+				<!-- Footer -->
+					<section id="footer">
+						<div class="container">
+							<span id="jinrishici-sentence">正在加载今日诗词....</span>
+											<script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+							<ul class="copyright">
+								<li>Xuancheng_Mao</li><li>设计: <a href="http://html5up.net">HTML5 UP</a></li>
+							</ul>
+						</div>
+					</section>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
