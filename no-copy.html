@@ -22,7 +22,8 @@
 				</header>
 				<nav id="nav">
 					<ul>
-						<li><a href="#Article" class="active">文章</a></li>
+						<li><a href="https://onetsr.github.io/">首页</a></li>
+						<li><a href="https://onetsr.github.io/" class="active">J-禁止抄题解</a></li>
 					</ul>
 				</nav>
 				<footer>
@@ -40,22 +41,31 @@
 						<!-- Article -->
 							<section id="Article">
 								<div class="container">
-									<h3>文章</h3>
-									<p>📕题解区</p>
+									<h3>脚本：禁止抄题解</h3>
+									<p>2025.2.16 by Xuancheng_Mao</p>
 									<div class="features">
-										<article>
-												<h4><a href="https://onetsr.github.io/S-P7072.html">P7072 [CSP-J2020] 直播获奖</a></h4>
-												<p>预计阅读时间：未知</p>
-												<h4><a href="https://onetsr.github.io/S-P2671.html">P2671 [NOIP 2015 普及组] 求和</a></h4>
-												<p>预计阅读时间：未知</p>
-										</article>
-									</div>
-									<p>📕脚本区</p>
-									<div class="features">
-										<article>
-											<h4><a href="https://onster.github.io/no-copy.html">禁止抄题解</a></h4>
-											<p>预计阅读时间：1分钟</p>
-										</article>
+										<div class="lfe-marked"><pre><code class="language-javascript hljs"><span class="hljs-comment">// ==UserScript==</span>
+<span class="hljs-comment">// @name         禁止ctj</span>
+<span class="hljs-comment">// @namespace    http://tampermonkey.net/</span>
+<span class="hljs-comment">// @version      2025-02-16</span>
+<span class="hljs-comment">// @description  阻止你的谔谔行为。</span>
+<span class="hljs-comment">// @author       Xuancheng_Mao</span>
+<span class="hljs-comment">// @match        https://www.luogu.com.cn/problem/solution/*</span>
+<span class="hljs-comment">// @icon         https://www.google.com/s2/favicons?sz=64&amp;domain=luogu.com.cn</span>
+<span class="hljs-comment">// @grant        none</span>
+<span class="hljs-comment">// ==/UserScript==</span>
+
+(<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) {
+        <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">'contextmenu'</span>, <span class="hljs-keyword">function</span>(<span class="hljs-params">event</span>) {
+            event.<span class="hljs-title function_">preventDefault</span>();
+        });
+
+        <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">'selectstart'</span>, <span class="hljs-keyword">function</span>(<span class="hljs-params">event</span>) {
+            event.<span class="hljs-title function_">preventDefault</span>();
+        });
+
+})();
+</code></pre></div>
 									</div>
 								</div>
 							</section>
