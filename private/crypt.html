@@ -16,19 +16,51 @@ function xorEncryptDecrypt(text, key) {
 }
 
 function encryptText() {
-    const inputText = document.getElementById('inputText').value;
-    const key = parseInt(document.getElementById('keyValue').value);
-    const encryptedText = xorEncryptDecrypt(inputText, key);
-    document.getElementById('result').innerText = encryptedText;
-    document.getElementById('copyButton').style.display = 'inline';
+    swal({
+        title: "警告！是否继续？",
+        text: "请勿用本工具加密/解密任何敏感信息！我们保证您的信息只有您自己知道，但工具不保证加密算法足够安全，也因此请保管好您的加密/解密结果和密钥！若出现问题我们将不会提供支持。",
+        icon: "warning",
+        buttons: ["取消","确认！"],
+        dangerMode: true,
+    })
+    .then((willDelete) => {
+        if (willDelete) {
+        const inputText = document.getElementById('inputText').value;
+        const key = parseInt(document.getElementById('keyValue').value);
+        const encryptedText = xorEncryptDecrypt(inputText, key);
+        document.getElementById('result').innerText = encryptedText;
+        document.getElementById('copyButton').style.display = 'inline';
+        swal("加密完成！", {
+            icon: "success",
+        });
+        } else {
+            swal("什么事情都不会发生。");
+        }
+    });
 }
 
 function decryptText() {
-    const inputText = document.getElementById('inputText').value;
-    const key = parseInt(document.getElementById('keyValue').value);
-    const decryptedText = xorEncryptDecrypt(inputText, key);
-    document.getElementById('result').innerText = decryptedText;
-    document.getElementById('copyButton').style.display = 'inline';
+    swal({
+        title: "警告！是否继续？",
+        text: "请勿用本工具加密/解密任何敏感信息！我们保证您的信息只有您自己知道，但工具不保证加密算法足够安全，也因此请保管好您的加密/解密结果和密钥！若出现问题我们将不会提供支持。",
+        icon: "warning",
+        buttons: ["取消","确认！"],
+        dangerMode: true,
+    })
+    .then((willDelete) => {
+        if (willDelete) {
+        const inputText = document.getElementById('inputText').value;
+        const key = parseInt(document.getElementById('keyValue').value);
+        const decryptedText = xorEncryptDecrypt(inputText, key);
+        document.getElementById('result').innerText = decryptedText;
+        document.getElementById('copyButton').style.display = 'inline';
+        swal("解密完成！", {
+            icon: "success",
+        });
+        } else {
+            swal("什么事情都不会发生。");
+        }
+    });
 }
 
 function copyToClipboard() {
