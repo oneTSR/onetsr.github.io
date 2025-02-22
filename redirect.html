@@ -1,0 +1,77 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>页面重定向中...</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                text-align: center;
+                padding: 20px;
+                background-color: #f4f4f4;
+                color: #333;
+            }
+            .container {
+                margin: auto;
+                width: 50%;
+                background-color: #fff;
+                padding: 20px;
+                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+                border-radius: 10px;
+            }
+            .message {
+                font-size: 20px;
+                margin-bottom: 20px;
+            }
+            .countdown {
+                font-size: 16px;
+                color: #555;
+            }
+            a {
+                color: #007BFF;
+                text-decoration: none;
+            }
+            a:hover {
+                text-decoration: underline;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>页面正在重定向...</h1>
+            <p class="message" id="redirect-message">正在从某个地方重定向到某个目标网页...</p>
+            <p class="countdown" id="countdown">3秒后将自动跳转。</p>
+            <p>如果跳转未发生，点击 <a href="#" id="manual-link">这里</a> 手动前往目标网页。</p>
+        </div>
+
+        <script>
+            function getQueryParameter(param) {
+                const queryString = window.location.search;
+                const urlParams = new URLSearchParams(queryString);
+                return urlParams.get(param);
+            }
+
+            const fromUrl = getQueryParameter('from') || '未知来源';
+            const toUrl = getQueryParameter('to') || 'https://onetsr.github.io/404.html'; 
+
+            const redirectMessage = document.getElementById('redirect-message');
+            redirectMessage.innerText = `正在从 ${fromUrl} 重定向到 ${toUrl}...`;
+
+            const manualLink = document.getElementById('manual-link');
+            manualLink.href = toUrl;
+
+            let countdown = 3;
+            const countdownElement = document.getElementById('countdown');
+            const interval = setInterval(() => {
+                countdown--;
+                if (countdown > 0) {
+                    countdownElement.textContent = `${countdown}秒后将自动跳转。`;
+                } else {
+                    clearInterval(interval);
+                    window.location.href = toUrl;
+                }
+            }, 1000);
+        </script>
+    </body>
+</html>
