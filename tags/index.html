@@ -76,6 +76,13 @@
 .captcha-btn:hover {
   background: #66b1ff;
 }
+// 投降按钮样式（区分普通验证按钮）
+.captcha-btn.surrender {
+  background: #f56c6c;
+}
+.captcha-btn.surrender:hover {
+  background: #f78989;
+}
 .captcha-result {
   margin-top: 12px;
   font-size: 14px;
@@ -111,6 +118,7 @@ let selectedCaptchaItems = new Set();
 const captchaGrid = document.getElementById('captchaGrid');
 const captchaResult = document.getElementById('captchaResult');
 const postContentWrapper = document.getElementById('post-content-wrapper');
+const verifyBtn = document.getElementById('verifyBtn'); // 按钮DOM
 let shuffledImages = [];
 let targetCount = 0; // 本次验证的汽车图片总数
 
@@ -121,6 +129,10 @@ function initCaptcha() {
   selectedCaptchaItems.clear();
   captchaResult.textContent = '';
   captchaResult.className = 'captcha-result';
+  // 重置按钮为默认状态
+  verifyBtn.textContent = '验证';
+  verifyBtn.className = 'captcha-btn';
+  verifyBtn.onclick = checkCaptcha;
 
   // 1. 打乱图片但保证至少3张汽车图片存在
   shuffledImages = [...captchaConfig.images].sort(() => Math.random() - 0.5);
@@ -141,7 +153,7 @@ function initCaptcha() {
       this.src = `https://picsum.photos/seed/${shuffledImages[i].isTarget ? 'car' : 'normal'}${i}/200/200`;
     };
     
-    // 点击选择逻辑
+    // 点击选择逻辑（选择后检查按钮状态）
     item.appendChild(img);
     item.onclick = () => {
       item.classList.toggle('active');
@@ -150,10 +162,41 @@ function initCaptcha() {
       } else {
         selectedCaptchaItems.add(i);
       }
+      // 选择/取消选择后更新按钮状态
+      updateBtnStatus();
     };
     
     captchaGrid.appendChild(item);
   }
+
+  // 初始化时检查按钮状态（默认无选择→显示投降）
+  updateBtnStatus();
+}
+
+// 更新按钮状态：无选择时改为投降按钮
+function updateBtnStatus() {
+  if (selectedCaptchaItems.size === 0) {
+    // 无选择：改为投降按钮
+    verifyBtn.textContent = '投降';
+    verifyBtn.className = 'captcha-btn surrender';
+    verifyBtn.onclick = surrenderPass; // 绑定投降逻辑
+  } else {
+    // 有选择：恢复验证按钮
+    verifyBtn.textContent = '验证';
+    verifyBtn.className = 'captcha-btn';
+    verifyBtn.onclick = checkCaptcha;
+  }
+}
+
+// 投降逻辑：直接通过验证
+function surrenderPass() {
+  captchaResult.textContent = '杂鱼~';
+  captchaResult.className = 'captcha-result success';
+  postContentWrapper.style.display = 'block';
+  // 隐藏验证码
+  setTimeout(() => {
+    document.querySelector('.google-captcha').style.display = 'none';
+  }, 1500);
 }
 
 // 验证逻辑（容错规则：选中≥2张汽车即可，允许少量误选）
@@ -173,7 +216,7 @@ function checkCaptcha() {
 
   // 核心规则：选中≥2张汽车 + 误选≤1张非汽车 → 通过
   if (selectedTarget >= captchaConfig.minSelect && selectedWrong <= 1) {
-    captchaResult.textContent = `✅ 验证成功！你选中了${selectedTarget}张汽车图片`;
+    captchaResult.textContent = `pro`;
     captchaResult.className = 'captcha-result success';
     postContentWrapper.style.display = 'block';
     // 隐藏验证码
@@ -181,11 +224,11 @@ function checkCaptcha() {
       document.querySelector('.google-captcha').style.display = 'none';
     }, 1500);
   } else if (selectedTarget < captchaConfig.minSelect) {
-    captchaResult.textContent = `❌ 验证失败！请至少选择${captchaConfig.minSelect}张汽车图片`;
+    captchaResult.textContent = `noob`;
     captchaResult.className = 'captcha-result error';
     setTimeout(initCaptcha, 2000);
   } else if (selectedWrong > 1) {
-    captchaResult.textContent = `❌ 验证失败！最多只能误选1张非汽车图片`;
+    captchaResult.textContent = `noob`;
     captchaResult.className = 'captcha-result error';
     setTimeout(initCaptcha, 2000);
   }
