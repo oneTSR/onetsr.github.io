@@ -1444,7 +1444,7 @@ html *::-webkit-scrollbar-track {
   }
 }
 body {
-  background: #ffdf6a;
+  background: url("/img/blog-background.jpg");
   background-position: center;
   background-size: cover;
   background-attachment: fixed;
