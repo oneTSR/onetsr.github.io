@@ -1,12 +1,12 @@
 @import url("/assets/fonts/Ubuntu/Ubuntu-R.ttf");
 @import url("/assets/fonts/Ubuntu-Nomo/UbuntuMono-R.ttf");
 body[data-mode='light'] {
-  --theme-color: #b8e098;
-  --theme-color-light-1: #d4ecc1;
-  --theme-color-light-2: #c6e6ad;
-  --theme-color-light-3: #cde9b7;
-  --theme-color-transparent-1: rgba(184,224,152,0.6);
-  --theme-color-dark-1: #a4d77b;
+  --theme-color: #27a858;
+  --theme-color-light-1: #6bdd96;
+  --theme-color-light-2: #3ad174;
+  --theme-color-light-3: #53d785;
+  --theme-color-transparent-1: rgba(39,168,88,0.6);
+  --theme-color-dark-1: #23974f;
   --background-color: #fff;
   --background-color-transparent-1: rgba(255,255,255,0.85);
   --background-color-transparent-2: rgba(255,255,255,0.7);
@@ -26,20 +26,20 @@ body[data-mode='light'] {
   --font-color-light-2: #9b9b9b;
   --font-color-light-3: #cdcdcd;
   --link-hover-font-color: #fff;
-  --banner-background: url("/assets/images/9fjhx9j1.webp");
-  --banner-font-color: #22381e;
+  --banner-background: url("/assets/images/garden.png");
+  --banner-font-color: #ffffff;
   --nav-background-color: rgba(255,255,255,0.188);
   --card-border-color: #d7d7d7;
   --meow-box-shadow: 1px 1px 1px 1px rgba(42,42,42,0.051);
   --meow-card-shadow: 0px 3px 8px 6px rgba(42,42,42,0.051);
 }
 body[data-mode='dark'] {
-  --theme-color: #2e5936;
-  --theme-color-light-1: #6bb278;
-  --theme-color-light-2: #488a54;
-  --theme-color-light-3: #54a363;
-  --theme-color-transparent-1: rgba(46,89,54,0.6);
-  --theme-color-dark-1: #295031;
+  --theme-color: #9c2c30;
+  --theme-color-light-1: #d66e72;
+  --theme-color-light-2: #c83e43;
+  --theme-color-light-3: #cf565a;
+  --theme-color-transparent-1: rgba(156,44,48,0.6);
+  --theme-color-dark-1: #8c282b;
   --background-color: #2d2d2d;
   --background-color-transparent-1: rgba(45,45,45,0.88);
   --background-color-transparent-2: rgba(45,45,45,0.7);
@@ -59,8 +59,8 @@ body[data-mode='dark'] {
   --font-color-light-2: #808090;
   --font-color-light-3: #5b5b67;
   --link-hover-font-color: #2d2d2d;
-  --banner-background: url("/assets/images/blog-background.jpg");
-  --banner-font-color: #d6e4dd;
+  --banner-background: url("/assets/images/hel.png");
+  --banner-font-color: #ffffff;
   --nav-background-color: transparent;
   --card-border-color: #3b3b3b;
   --meow-box-shadow: 1px 1px 1px 1px rgba(187,187,187,0.012);
